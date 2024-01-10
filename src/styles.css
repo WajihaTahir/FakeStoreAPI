@@ -1,0 +1,80 @@
+*{
+   box-sizing: border-box; 
+}
+body{
+    margin:0;
+}
+
+.site-title{
+    font-size: 28px;
+}
+
+.nav{
+    width:100%;
+    background-color: rgb(220, 214, 214);
+    color:black;
+    display: flex;
+    justify-content: space-between;  
+    align-items: center;
+    padding: 0 4rem;
+    margin-bottom: 150px;
+    top: 0;
+    right: 0;
+    position: fixed;
+}
+
+/* .inlineul{
+    padding:0;
+    margin:0;
+    list-style: none;
+    display:inline;
+    flex-direction: column;
+    justify-content: space-between;
+    gap:2rem;
+} */
+
+.nav ul{
+    position:relative;
+}
+
+
+li{
+    display: inline;
+    padding:10px;
+    text-align: center;
+}
+
+
+li a:hover
+{
+    color: rgb(139, 133, 133);
+    /* color:black; */
+    border-radius: 10px;
+}
+
+.nav a{
+color:inherit;
+height:100%;
+padding: .40rem;
+
+}
+
+.findmore:hover{
+background-color: grey;
+}
+
+nav ul li ul{
+    position: absolute;
+    left:0;
+    display: none;
+}
+
+nav ul li:hover ul{
+display: block;
+
+}
+.cartQuantity{
+    background-color: rgb(16, 165, 53);
+    border-radius: 10px;
+
+}
