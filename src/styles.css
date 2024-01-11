@@ -74,7 +74,9 @@ display: block;
 
 }
 .cartQuantity{
-    background-color: rgb(16, 165, 53);
-    border-radius: 10px;
+    background-color: rgb(243, 49, 0);
+    border-radius: 80px;
+    position:relative;
+    
 
 }

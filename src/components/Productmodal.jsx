@@ -2,8 +2,7 @@ import React from "react";
 import { hide } from "@popperjs/core";
 import { faHeart } from "@fortawesome/free-regular-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import "../App.css"
-
+import "../App.css";
 
 const Productmodal = ({ currentProduct, onbtnclicked }) => {
   function onbuttonclicked(currentProduct) {
@@ -16,22 +15,22 @@ const Productmodal = ({ currentProduct, onbtnclicked }) => {
       className="modalcontainer"
       style={{
         position: "fixed",
-        top: '30%',
+        top: "30%",
         background: "white",
         border: "solid 1px black",
         width: "400px",
-        height:"450px",
+        height: "450px",
         alignSelf: "center",
-        right: '35%'
+        right: "35%",
       }}
     >
       <h4 style={{ color: "black" }}>
         <b>Name:</b> <i>{currentProduct?.title}</i>
       </h4>
-      <h4 style={{color:"black"}}>
+      <h4 style={{ color: "black" }}>
         <b>Price:</b> <i>{currentProduct?.price}</i>
       </h4>
-      <h4 style={{color:"black"}}>
+      <h4 style={{ color: "black" }}>
         <b>Category:</b> <i>{currentProduct?.category}</i>
       </h4>
       <img
@@ -51,7 +50,9 @@ const Productmodal = ({ currentProduct, onbtnclicked }) => {
       >
         Close
       </button>
-      <button style={{backgroundColor:"transparent", color:"black"}}><FontAwesomeIcon icon={faHeart} /></button>
+      <button style={{ backgroundColor: "transparent", color: "black" }}>
+        <FontAwesomeIcon icon={faHeart} />
+      </button>
     </div>
   );
 };

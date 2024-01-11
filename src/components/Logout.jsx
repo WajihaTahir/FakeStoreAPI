@@ -10,7 +10,7 @@ const Logout = () => {
   const handleLogOut = async () => {
     try {
       await logOut();
-      navigate("/")
+      navigate("/");
     } catch (error) {
       console.log(error.message);
     }

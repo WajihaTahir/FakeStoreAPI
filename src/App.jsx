@@ -17,6 +17,7 @@ import Footer from "./components/Footer";
 import { UserAuthContextProvider } from "./Context/UserAuthContext";
 import ProtectedRoute from "./components/ProtectedRoute";
 import Logout from "./components/Logout";
+import Alternate from "./components/Alternate";
 
 function App() {
   // let [search, setSearch] = useState("");
@@ -56,16 +57,12 @@ function App() {
               />
             }
           />
-          {/* <Route path="menscollection" element={<Mens/>} />
-          <Route path="womenscollection" element={<Womens/>}/>
-          <Route path="electronics" element={<Electronics/>} />
-          </Route> */}
 
           <Route path="/favorite" element={<Favorites />} />
           <Route path="/cart" element={<Cart />} />
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
-          <Route path="/logout" element={<Logout/>}/>
+          <Route path="/logout" element={<Logout />} />
           <Route
             path="/product-detail"
             element={
@@ -74,6 +71,7 @@ function App() {
               </ProtectedRoute>
             }
           />
+          <Route path="/alternate" element={<Alternate />} />
         </Routes>
       </UserAuthContextProvider>
       {/* </Router> */}

@@ -2,7 +2,6 @@ import "../styles.css";
 import { Link, useLocation } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHeart } from "@fortawesome/free-regular-svg-icons";
-// import Authentication from "./Authentication";
 import { useUserAuth } from "../Context/UserAuthContext";
 
 const Navbar = () => {
@@ -61,11 +60,23 @@ const Navbar = () => {
             to={"/cart"}
             style={location.pathname === "/cart" ? activeStyle : {}}
           >
-            Cart
-            <span className="cartQuantity">0</span>
+            <link
+              rel="stylesheet"
+              href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0"
+            />
+            <span
+              style={{ position: "absolute" }}
+              className="material-symbols-outlined"
+            >
+              shopping_cart
+            </span>
           </Link>
         </li>
-        {Boolean(!user) && <Link to="/login">Login</Link>}
+        {Boolean(!user) && (
+          <Link style={{ marginLeft: "25px" }} to="/login">
+            Login
+          </Link>
+        )}
         {Boolean(!user) && <Link to="/register">Sign Up</Link>}
         {Boolean(user) && <Link to="/logout">Log Out</Link>}
       </ul>

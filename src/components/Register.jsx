@@ -6,6 +6,7 @@ import { useUserAuth } from "../Context/UserAuthContext";
 const Signup = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
   const [error, setError] = useState("");
   const { signUp } = useUserAuth();
   const navigate = useNavigate();
@@ -14,12 +15,16 @@ const Signup = () => {
     e.preventDefault();
     setError("");
     try {
-      await signUp(email, password);
+      await signUp(email, password, confirmPassword);
+      console.log("passsss", password);
       navigate("/login");
     } catch (error) {
       setError(error.message);
     }
   };
+
+  const validateForm = () => password === confirmPassword;
+
   return (
     <>
       <div className="container-signin">
@@ -56,6 +61,25 @@ const Signup = () => {
                 onChange={(e) => setPassword(e.target.value)}
                 className="input-field"
               ></input>
+            </div>
+            <div className="input-control">
+              <input
+                type="password"
+                placeholder="enter your password"
+                value={confirmPassword}
+                className="input-field"
+                onChange={(e) => setConfirmPassword(e.target.value)}
+              />
+              {confirmPassword && (
+                <p
+                  className="validation-message"
+                  style={{ color: validateForm() ? "green" : "red" }}
+                >
+                  {validateForm()
+                    ? "Password Match"
+                    : "Password Does not Match"}
+                </p>
+              )}
             </div>
             <button
               type="submit"
