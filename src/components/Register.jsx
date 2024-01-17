@@ -2,14 +2,34 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "../login.css";
 import { useUserAuth } from "../Context/UserAuthContext";
+import validator from "validator";
 
 const Signup = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [error, setError] = useState("");
+  const [errorMessage, setErrorMessage] = useState("");
+
   const { signUp } = useUserAuth();
   const navigate = useNavigate();
+
+  const validate = (value) => {
+    if (
+      validator.isStrongPassword(value, {
+        minLength: 8,
+        minLowercase: 1,
+        minUppercase: 1,
+        minNumbers: 1,
+        minSymbols: 1,
+      })
+    ) {
+      setErrorMessage("Is Strong Password");
+    } else {
+      setErrorMessage("Not Strong" + " : Include character, upper-lower case & number"
+      );
+    }
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -17,7 +37,7 @@ const Signup = () => {
     try {
       await signUp(email, password, confirmPassword);
       console.log("passsss", password);
-      navigate("/login");
+      navigate("/");
     } catch (error) {
       setError(error.message);
     }
@@ -30,9 +50,9 @@ const Signup = () => {
       <div className="container-signin">
         <section className="wrapper">
           <div className="heading">
-            <h1 style={{ color: "black" }} className="text text-large">
+            <h2 style={{ color: "black" }} className="text text-large">
               <strong>Register</strong>
-            </h1>
+            </h2>
             <p style={{ color: "black" }} className="text text-normal">
               Already a user?
               <span>
@@ -58,9 +78,22 @@ const Signup = () => {
                 type="password"
                 placeholder="enter your password"
                 value={password}
-                onChange={(e) => setPassword(e.target.value)}
+                onChange={(e) => {
+                  setPassword(e.target.value);
+                  validate(e.target.value);
+                }}
                 className="input-field"
               ></input>
+              {errorMessage === "" ? null : (
+                <span
+                  style={{
+                    fontWeight: "middle",
+                    color: "red",
+                  }}
+                >
+                  {errorMessage}
+                </span>
+              )}
             </div>
             <div className="input-control">
               <input

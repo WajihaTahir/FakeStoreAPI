@@ -18,6 +18,7 @@ import { UserAuthContextProvider } from "./Context/UserAuthContext";
 import ProtectedRoute from "./components/ProtectedRoute";
 import Logout from "./components/Logout";
 import Alternate from "./components/Alternate";
+import { ShoppingCartProvider } from "./Context/ShoppingCartContext";
 
 function App() {
   // let [search, setSearch] = useState("");
@@ -38,43 +39,54 @@ function App() {
 
   return (
     <>
-      {/* <Router> */}
-
-      <UserAuthContextProvider>
-        <Navbar />
-        <div style={{ marginBottom: "150px" }}></div>
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/about" element={<About />} />
-
-          <Route
-            path="/allproducts"
-            element={
-              <Products
-                results={fetchedData}
-                onProductSelected={setCurrentProduct}
-                onButtonPressed={setIsModalOpen}
-              />
-            }
-          />
-
-          <Route path="/favorite" element={<Favorites />} />
-          <Route path="/cart" element={<Cart />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/register" element={<Register />} />
-          <Route path="/logout" element={<Logout />} />
-          <Route
-            path="/product-detail"
-            element={
-              <ProtectedRoute>
-                <Productsdetails />
-              </ProtectedRoute>
-            }
-          />
-          <Route path="/alternate" element={<Alternate />} />
-        </Routes>
-      </UserAuthContextProvider>
-      {/* </Router> */}
+      <ShoppingCartProvider>
+        <UserAuthContextProvider>
+          <Navbar />
+          <div style={{ marginBottom: "150px" }}></div>
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/about" element={<About />} />
+            <Route
+              path="/allproducts"
+              element={
+                <Products
+                  results={fetchedData}
+                  onProductSelected={setCurrentProduct}
+                  onButtonPressed={setIsModalOpen}
+                />
+              }
+            />
+            <Route
+              path="/favorite"
+              element={
+                <ProtectedRoute>
+                  <Favorites />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="/cart"
+              element={
+                <ProtectedRoute>
+                  <Cart />
+                </ProtectedRoute>
+              }
+            />
+            <Route path="/login" element={<Login />} />
+            <Route path="/register" element={<Register />} />
+            <Route path="/logout" element={<Logout />} />
+            <Route
+              path="/product-detail"
+              element={
+                <ProtectedRoute>
+                  <Productsdetails />
+                </ProtectedRoute>
+              }
+            />
+            <Route path="/alternate" element={<Alternate />} />
+          </Routes>
+        </UserAuthContextProvider>
+      </ShoppingCartProvider>
       {isModalOpen && (
         <Productmodal
           currentProduct={currentProduct}

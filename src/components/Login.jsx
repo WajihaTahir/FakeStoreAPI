@@ -21,6 +21,7 @@ const Login = () => {
       navigate("/");
     } catch (error) {
       setError(error.message);
+      alert("login Failed, Please check your email or password");
     }
   };
 
@@ -39,9 +40,9 @@ const Login = () => {
       <div className="container-signin">
         <section className="wrapper">
           <div className="heading">
-            <h1 style={{ color: "black" }} className="text text-large">
-              <strong>Sign In</strong>
-            </h1>
+            <h2 style={{ color: "black" }} className="text text-large">
+              Sign In
+            </h2>
             <p style={{ color: "black" }} className="text text-normal">
               New User?
               <span>
@@ -71,6 +72,7 @@ const Login = () => {
                 onChange={(e) => setPassword(e.target.value)}
                 className="input-field"
               ></input>
+
               <div
                 style={{ padding: "2px", color: "black" }}
                 onClick={() => setVisible(!visible)}
@@ -78,6 +80,7 @@ const Login = () => {
                 {visible ? <EyeOutlined /> : <EyeInvisibleOutlined />}
               </div>
             </div>
+
             <button
               type="submit"
               name="Submit"
@@ -87,7 +90,7 @@ const Login = () => {
               Sign In
             </button>
             <GoogleButton
-              style={{ marginLeft: "70px" }}
+              style={{ marginLeft: "90px" }}
               onClick={handleGoogleSignIn}
             />
           </form>

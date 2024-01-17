@@ -2,21 +2,39 @@ import { useUserAuth } from "../Context/UserAuthContext";
 import Image1 from "../assets/I1.jpeg";
 import Image2 from "../assets/I2.webp";
 import Image3 from "../assets/I3.jpeg";
+import { Link } from "react-router-dom";
 
 const Home = () => {
   const { user } = useUserAuth();
   return (
     <>
-      <div
+      <div className="title"
         style={{
           color: "black",
-          fontSize: "38px",
-          marginTop: "75px",
+          fontSize: "34px",
+          marginTop: "55px",
           textAlign: "center",
         }}
       >
-        Welcome to Fake Store<br></br> {user && user.email?.split("@")[0]}
-      </div>
+        Welcome to Fake Store<br></br>
+        </div> <h3 style={{color:"black"}}>{user && user.email?.split("@")[0]}</h3>
+        <br></br>
+        <Link
+          style={{
+            color: "white",
+            backgroundColor: "black",
+            borderRadius: "7px",
+            fontSize:"20px",
+            textAlign:"center",
+            padding:"5px"
+         
+          }}
+          to={"/allproducts"}
+          className="site-title"
+        >
+          Shop Now
+        </Link>{" "}
+      
       <div
         style={{
           display: "grid",
@@ -28,14 +46,14 @@ const Home = () => {
         <div>
           <img
             src={Image1}
-            style={{ width: "450px", height: "600px", display: "flex" }}
+            style={{ width: "450px", height: "500px", display: "flex" }}
           ></img>
         </div>
         <div>
-          <img src={Image2} style={{ width: "450px", height: "600px" }}></img>
+          <img src={Image2} style={{ width: "450px", height: "500px" }}></img>
         </div>
         <div>
-          <img src={Image3} style={{ width: "450px", height: "600px" }}></img>
+          <img src={Image3} style={{ width: "450px", height: "500px" }}></img>
         </div>
       </div>
     </>

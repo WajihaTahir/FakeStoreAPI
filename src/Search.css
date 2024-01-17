@@ -1,0 +1,25 @@
+
+.search-box{
+    font-family: inherit;
+    font-size: 1rem;
+    font-weight: 200;
+    line-height: inherit;
+    width:400px;
+    height:auto;
+    padding:0.95rem 1.25rem;
+    border:none;
+    outline:none;
+    border-radius: 2rem;
+    color:black;
+    background:rgb(238, 235,235);
+    text-transform:unset;
+    text-rendering: optimizeLegibility;
+    position:absolute;
+    left:35%;
+}
+
+.search{
+    display: flex;
+    margin-bottom: 800px;
+    
+}

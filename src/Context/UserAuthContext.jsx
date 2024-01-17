@@ -36,7 +36,7 @@ export function UserAuthContextProvider({ children }) {
       setUser(currentUser);
     });
     return () => {
-      unsubscribe();
+      unsubscribe(); //unsubscribe on unmount
     };
   }, []);
   return (

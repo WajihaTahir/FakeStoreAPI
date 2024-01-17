@@ -1,19 +1,25 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { useLocation } from "react-router-dom";
 import { faCartShopping } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHeart } from "@fortawesome/free-regular-svg-icons";
 import SizeButton from "./SizeButton";
+import { useShoppingCart } from "../Context/ShoppingCartContext";
+import "../Productdetails.css"
 
 const Productsdetails = () => {
-  const [counter, setCounter] = useState(0);
+  // const [counter, setCounter] = useState(0);
+  const {getItemQuantity, increaseCartQuantity, decreaseCartQuantity, removeFromCart} = useShoppingCart();
   const { state } = useLocation();
-  console.log("location", state?.product);
+  // console.log("location", state?.product);
+  const quantity = getItemQuantity(state.product.id)
+  // console.log("quantitytt", quantity);
   return (
     <>
       <div
         style={{ display: "grid", gridTemplateRows: "2fr 0.2fr 0.2fr 0.2fr" }}
       >
+      
         <div className="picbuttons">
           <img
             style={{
@@ -49,7 +55,8 @@ const Productsdetails = () => {
           />
           <SizeButton buttontext="XXL (EU 52-54)" />
           <br></br>
-          <button
+         <div >
+          <button className="addtocart" onClick={() => increaseCartQuantity(state.product)}
             style={{
               width: "350px",
               height: "50px",
@@ -61,13 +68,27 @@ const Productsdetails = () => {
             Add to Cart <FontAwesomeIcon icon={faCartShopping} />
           </button>
           <br></br>
-          <button
+          <button className="removefromcart" onClick={() => removeFromCart(state.product.id)}
             style={{
               width: "350px",
               height: "50px",
               fontSize: "20px",
               borderRadius: "30px",
-              marginTop: "30px",
+              marginTop: "50px",
+              marginLeft:"250px"
+            }}
+          >
+            Remove From Cart
+          </button>
+
+          <br></br>
+          <button className="addtofavorites"
+            style={{
+              width: "350px",
+              height: "50px",
+              fontSize: "20px",
+              borderRadius: "30px",
+              marginTop: "40px",
               marginLeft: "250px",
               backgroundColor: "transparent",
               color: "black",
@@ -76,13 +97,14 @@ const Productsdetails = () => {
           >
             Favourite <FontAwesomeIcon icon={faHeart} />
           </button>
+          </div>
           <br></br>
           <div
             style={{
               display: "flex",
               flexDirection: "row",
               justifyContent: "center",
-              marginLeft: "230px",
+              marginLeft: "240px",
               marginTop: "50px",
             }}
           >
@@ -93,7 +115,7 @@ const Productsdetails = () => {
                 alignItems: "center",
                 padding: "10px",
               }}
-              onClick={() => setCounter(counter - 1)}
+              onClick={() => {console.log("test");decreaseCartQuantity(state.product)}}
             >
               -
             </button>
@@ -106,7 +128,7 @@ const Productsdetails = () => {
                   padding: "10px",
                 }}
               >
-                {counter}
+                {quantity}
               </h6>
             </div>
             <button
@@ -116,11 +138,12 @@ const Productsdetails = () => {
                 alignItems: "center",
                 padding: "10px",
               }}
-              onClick={() => setCounter(counter + 1)}
+              onClick={() => increaseCartQuantity(state.product)}
             >
               +
             </button>
           </div>
+          
         </div>
         <h1
           style={{

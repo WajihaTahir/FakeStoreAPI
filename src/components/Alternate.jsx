@@ -7,7 +7,16 @@ const Alternate = () => {
       <a href="/login" className="alternate-login">
         sign in here
       </a>{" "}
-      to see the product details.{" "}
+      Or{" "}
+      <a href="/register" className="alternate-login">
+        create an account
+      </a>{" "}
+      to
+      <ul style={{ display: "flex", flexDirection: "column" }}>
+        <li>See product details</li>
+        <li>Add products to your favorites</li>
+        <li>Enjoy exclusive benefits</li>
+      </ul>
     </h2>
   );
 };

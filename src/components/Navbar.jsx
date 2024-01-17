@@ -3,11 +3,19 @@ import { Link, useLocation } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHeart } from "@fortawesome/free-regular-svg-icons";
 import { useUserAuth } from "../Context/UserAuthContext";
+import { useShoppingCart } from "../Context/ShoppingCartContext";
 
 const Navbar = () => {
+  const { cartQuantity, setCartItems } = useShoppingCart();
+  // console.log("cartquantity", cartQuantity);
   const { user } = useUserAuth() ?? {};
 
   const location = useLocation();
+
+  const removeCartItems = () => {
+    setCartItems([]);
+  };
+
   const activeStyle = {
     color: "orange",
   };
@@ -64,21 +72,46 @@ const Navbar = () => {
               rel="stylesheet"
               href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0"
             />
+
             <span
               style={{ position: "absolute" }}
               className="material-symbols-outlined"
             >
               shopping_cart
             </span>
+            {cartQuantity > 0 && (
+              <span
+                style={{
+                  backgroundColor: "red",
+                  position: "relative",
+                  borderRadius: "100px",
+                }}
+              >
+                {cartQuantity}
+              </span>
+            )}
           </Link>
         </li>
         {Boolean(!user) && (
-          <Link style={{ marginLeft: "25px" }} to="/login">
+          <Link style={{ marginLeft: "30px" }} to="/login">
             Login
           </Link>
         )}
-        {Boolean(!user) && <Link to="/register">Sign Up</Link>}
-        {Boolean(user) && <Link to="/logout">Log Out</Link>}
+        {Boolean(!user) && (
+          <Link style={{ marginLeft: "12px" }} to="/register">
+            Sign Up
+          </Link>
+        )}
+
+        {Boolean(user) && (
+          <Link
+            style={{ marginLeft: "20px" }}
+            to="/logout"
+            onClick={removeCartItems}
+          >
+            Log Out
+          </Link>
+        )}
       </ul>
     </nav>
   );

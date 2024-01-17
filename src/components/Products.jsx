@@ -1,12 +1,17 @@
 /* eslint-disable react/prop-types */
 import React from "react";
-import { useEffect } from "react";
+import { useState } from "react";
 import "../styles.css";
-import { Outlet, useLocation, useNavigate, useParams } from "react-router-dom";
+import { Outlet, useLocation, useNavigate } from "react-router-dom";
+import Search from "./Search";
+
+
+
 
 function Products({ results, onButtonPressed, onProductSelected }) {
   const navigate = useNavigate();
   const location = useLocation();
+  const [products, setProducts] = useState(results);
   // console.log("location", location);
 
   function onimageclicked(product) {
@@ -25,8 +30,8 @@ function Products({ results, onButtonPressed, onProductSelected }) {
           alignItems: "center",
         }}
       >
-       
-        {results.map((each) => {
+       <Search results={results} setProducts={setProducts}/>
+        {products.map((each) => {
           let { id, title, price, image } = each;
           return (
             <div
