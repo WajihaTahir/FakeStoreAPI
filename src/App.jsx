@@ -6,7 +6,7 @@ import Home from "./components/Home";
 import Cart from "./components/Cart";
 import Login from "./components/Login";
 import Register from "./components/Register";
-import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import { Route, Routes } from "react-router-dom";
 import Favorites from "./components/Favorites";
 import Productmodal from "./components/Productmodal";
 import Productsdetails from "./components/Productsdetails";
@@ -16,7 +16,6 @@ import Footer from "./components/Footer";
 // import Electronics from "./components/Electronics";
 import { UserAuthContextProvider } from "./Context/UserAuthContext";
 import ProtectedRoute from "./components/ProtectedRoute";
-import Logout from "./components/Logout";
 import Alternate from "./components/Alternate";
 import { ShoppingCartProvider } from "./Context/ShoppingCartContext";
 
@@ -39,8 +38,8 @@ function App() {
 
   return (
     <>
-      <ShoppingCartProvider>
-        <UserAuthContextProvider>
+      <UserAuthContextProvider>
+        <ShoppingCartProvider>
           <Navbar />
           <div style={{ marginBottom: "150px" }}></div>
           <Routes>
@@ -74,7 +73,6 @@ function App() {
             />
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />
-            <Route path="/logout" element={<Logout />} />
             <Route
               path="/product-detail"
               element={
@@ -85,8 +83,9 @@ function App() {
             />
             <Route path="/alternate" element={<Alternate />} />
           </Routes>
-        </UserAuthContextProvider>
-      </ShoppingCartProvider>
+        </ShoppingCartProvider>
+      </UserAuthContextProvider>
+
       {isModalOpen && (
         <Productmodal
           currentProduct={currentProduct}

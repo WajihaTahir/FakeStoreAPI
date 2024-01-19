@@ -1,5 +1,5 @@
 import "../styles.css";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHeart } from "@fortawesome/free-regular-svg-icons";
 import { useUserAuth } from "../Context/UserAuthContext";
@@ -8,12 +8,22 @@ import { useShoppingCart } from "../Context/ShoppingCartContext";
 const Navbar = () => {
   const { cartQuantity, setCartItems } = useShoppingCart();
   // console.log("cartquantity", cartQuantity);
-  const { user } = useUserAuth() ?? {};
+  const { user, logOut } = useUserAuth() ?? {};
 
   const location = useLocation();
 
-  const removeCartItems = () => {
-    setCartItems([]);
+  const navigate = useNavigate();
+
+  const handleLogOut = async () => {
+    try {
+      await logOut();
+      console.log("loggedout");
+      setCartItems([]);
+      console.log("cart items reset");
+      navigate("/");
+    } catch (error) {
+      console.log(error.message);
+    }
   };
 
   const activeStyle = {
@@ -104,11 +114,7 @@ const Navbar = () => {
         )}
 
         {Boolean(user) && (
-          <Link
-            style={{ marginLeft: "20px" }}
-            to="/logout"
-            onClick={removeCartItems}
-          >
+          <Link style={{ marginLeft: "20px" }} onClick={handleLogOut}>
             Log Out
           </Link>
         )}
@@ -118,16 +124,3 @@ const Navbar = () => {
 };
 
 export default Navbar;
-
-// function CustomLink({ to, children, ...props }) {
-//   const resolvedPath = useResolvedPath(to); //allows to take the relevant path
-//   const isActive = useMatch({ path: resolvedPath.pathname, end: true }); //we want to pass our path and we are saying that entire url must match.
-
-//   return (
-//     <li className={isActive ? "active" : ""}>
-//       <Link to={to} {...props}>
-//         {children}
-//       </Link>
-//     </li>
-//   );
-// }

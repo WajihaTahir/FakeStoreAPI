@@ -26,7 +26,9 @@ function Cart() {
 
   return (
     <div className="cartTab">
-      <h2 style={{textAlign:"left", color:"black", fontWeight:"normal"}}>Your cart has the following items:</h2>
+      <h2 style={{ textAlign: "left", color: "black", fontWeight: "normal" }}>
+        Your cart has the following items:
+      </h2>
       {cartItems.map((item) => {
         const quantity = getItemQuantity(item.product.id);
 
@@ -39,7 +41,7 @@ function Cart() {
               borderStyle: "solid",
               marginBottom: "10px",
               borderRadius: "10px",
-              width:"800px"
+              width: "800px",
             }}
             key={item.id}
           >

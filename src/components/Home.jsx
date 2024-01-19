@@ -8,7 +8,8 @@ const Home = () => {
   const { user } = useUserAuth();
   return (
     <>
-      <div className="title"
+      <div
+        className="title"
         style={{
           color: "black",
           fontSize: "34px",
@@ -17,24 +18,23 @@ const Home = () => {
         }}
       >
         Welcome to Fake Store<br></br>
-        </div> <h3 style={{color:"black"}}>{user && user.email?.split("@")[0]}</h3>
-        <br></br>
-        <Link
-          style={{
-            color: "white",
-            backgroundColor: "black",
-            borderRadius: "7px",
-            fontSize:"20px",
-            textAlign:"center",
-            padding:"5px"
-         
-          }}
-          to={"/allproducts"}
-          className="site-title"
-        >
-          Shop Now
-        </Link>{" "}
-      
+      </div>{" "}
+      <h3 style={{ color: "black" }}>{user && user.email?.split("@")[0]}</h3>
+      <br></br>
+      <Link
+        style={{
+          color: "white",
+          backgroundColor: "black",
+          borderRadius: "7px",
+          fontSize: "20px",
+          textAlign: "center",
+          padding: "5px",
+        }}
+        to={"/allproducts"}
+        className="site-title"
+      >
+        Shop Now
+      </Link>{" "}
       <div
         style={{
           display: "grid",

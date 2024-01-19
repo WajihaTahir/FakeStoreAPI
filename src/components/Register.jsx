@@ -26,7 +26,8 @@ const Signup = () => {
     ) {
       setErrorMessage("Is Strong Password");
     } else {
-      setErrorMessage("Not Strong" + " : Include character, upper-lower case & number"
+      setErrorMessage(
+        "Not Strong" + " : Include character, upper-lower case & number"
       );
     }
   };

@@ -8,7 +8,8 @@ import {
   signInWithPopup,
 } from "firebase/auth";
 
-import { auth } from "../firebase";
+import { auth, db } from "../firebase";
+import { doc, setDoc } from "firebase/firestore";
 
 const userAuthContext = createContext();
 
@@ -16,8 +17,16 @@ export function UserAuthContextProvider({ children }) {
   const [user, setUser] = useState({});
 
   function signUp(email, password) {
-    return createUserWithEmailAndPassword(auth, email, password);
+    return createUserWithEmailAndPassword(auth, email, password)
+      .then((userCredential) => {
+        console.log(userCredential.user);
+        setDoc(doc(db, "users", userCredential.user.uid), {
+          favorites: [],
+        }).catch((e) => console.log(e));
+      })
+      .catch((e) => console.log(e));
   }
+
   function logIn(email, password) {
     return signInWithEmailAndPassword(auth, email, password);
   }

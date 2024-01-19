@@ -5,9 +5,6 @@ import "../styles.css";
 import { Outlet, useLocation, useNavigate } from "react-router-dom";
 import Search from "./Search";
 
-
-
-
 function Products({ results, onButtonPressed, onProductSelected }) {
   const navigate = useNavigate();
   const location = useLocation();
@@ -19,7 +16,7 @@ function Products({ results, onButtonPressed, onProductSelected }) {
     onProductSelected(product);
   }
 
- if(location.pathname!=="/allproducts") return ( <Outlet />)
+  if (location.pathname !== "/allproducts") return <Outlet />;
   if (results) {
     return (
       <div
@@ -30,7 +27,7 @@ function Products({ results, onButtonPressed, onProductSelected }) {
           alignItems: "center",
         }}
       >
-       <Search results={results} setProducts={setProducts}/>
+        <Search results={results} setProducts={setProducts} />
         {products.map((each) => {
           let { id, title, price, image } = each;
           return (

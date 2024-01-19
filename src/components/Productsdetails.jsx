@@ -5,21 +5,25 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHeart } from "@fortawesome/free-regular-svg-icons";
 import SizeButton from "./SizeButton";
 import { useShoppingCart } from "../Context/ShoppingCartContext";
-import "../Productdetails.css"
+import "../Productdetails.css";
 
 const Productsdetails = () => {
   // const [counter, setCounter] = useState(0);
-  const {getItemQuantity, increaseCartQuantity, decreaseCartQuantity, removeFromCart} = useShoppingCart();
+  const {
+    getItemQuantity,
+    increaseCartQuantity,
+    decreaseCartQuantity,
+    removeFromCart,
+  } = useShoppingCart();
   const { state } = useLocation();
   // console.log("location", state?.product);
-  const quantity = getItemQuantity(state.product.id)
+  const quantity = getItemQuantity(state.product.id);
   // console.log("quantitytt", quantity);
   return (
     <>
       <div
         style={{ display: "grid", gridTemplateRows: "2fr 0.2fr 0.2fr 0.2fr" }}
       >
-      
         <div className="picbuttons">
           <img
             style={{
@@ -55,48 +59,53 @@ const Productsdetails = () => {
           />
           <SizeButton buttontext="XXL (EU 52-54)" />
           <br></br>
-         <div >
-          <button className="addtocart" onClick={() => increaseCartQuantity(state.product)}
-            style={{
-              width: "350px",
-              height: "50px",
-              fontSize: "20px",
-              borderRadius: "30px",
-              marginTop: "50px",
-            }}
-          >
-            Add to Cart <FontAwesomeIcon icon={faCartShopping} />
-          </button>
-          <br></br>
-          <button className="removefromcart" onClick={() => removeFromCart(state.product.id)}
-            style={{
-              width: "350px",
-              height: "50px",
-              fontSize: "20px",
-              borderRadius: "30px",
-              marginTop: "50px",
-              marginLeft:"250px"
-            }}
-          >
-            Remove From Cart
-          </button>
+          <div>
+            <button
+              className="addtocart"
+              onClick={() => increaseCartQuantity(state.product)}
+              style={{
+                width: "350px",
+                height: "50px",
+                fontSize: "20px",
+                borderRadius: "30px",
+                marginTop: "50px",
+              }}
+            >
+              Add to Cart <FontAwesomeIcon icon={faCartShopping} />
+            </button>
+            <br></br>
+            <button
+              className="removefromcart"
+              onClick={() => removeFromCart(state.product.id)}
+              style={{
+                width: "350px",
+                height: "50px",
+                fontSize: "20px",
+                borderRadius: "30px",
+                marginTop: "50px",
+                marginLeft: "250px",
+              }}
+            >
+              Remove From Cart
+            </button>
 
-          <br></br>
-          <button className="addtofavorites"
-            style={{
-              width: "350px",
-              height: "50px",
-              fontSize: "20px",
-              borderRadius: "30px",
-              marginTop: "40px",
-              marginLeft: "250px",
-              backgroundColor: "transparent",
-              color: "black",
-              borderColor: "black",
-            }}
-          >
-            Favourite <FontAwesomeIcon icon={faHeart} />
-          </button>
+            <br></br>
+            <button
+              className="addtofavorites"
+              style={{
+                width: "350px",
+                height: "50px",
+                fontSize: "20px",
+                borderRadius: "30px",
+                marginTop: "40px",
+                marginLeft: "250px",
+                backgroundColor: "transparent",
+                color: "black",
+                borderColor: "black",
+              }}
+            >
+              Favourite <FontAwesomeIcon icon={faHeart} />
+            </button>
           </div>
           <br></br>
           <div
@@ -115,7 +124,10 @@ const Productsdetails = () => {
                 alignItems: "center",
                 padding: "10px",
               }}
-              onClick={() => {console.log("test");decreaseCartQuantity(state.product)}}
+              onClick={() => {
+                console.log("test");
+                decreaseCartQuantity(state.product);
+              }}
             >
               -
             </button>
@@ -143,7 +155,6 @@ const Productsdetails = () => {
               +
             </button>
           </div>
-          
         </div>
         <h1
           style={{
