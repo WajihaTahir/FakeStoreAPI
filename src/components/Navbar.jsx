@@ -8,7 +8,7 @@ import { useShoppingCart } from "../Context/ShoppingCartContext";
 const Navbar = () => {
   const { cartQuantity, setCartItems } = useShoppingCart();
   // console.log("cartquantity", cartQuantity);
-  const { user, logOut, deleteAUser } = useUserAuth() ?? {};
+  const { user, logOut, deleteAUser } = useUserAuth();
 
   const location = useLocation();
 

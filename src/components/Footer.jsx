@@ -13,7 +13,8 @@ function Footer() {
         position: "absolute",
         left: 0,
         right: 0,
-        marginTop: "200px",
+        marginTop: "380px",
+        padding:"none",
         maxHeight: "300px",
       }}
     >

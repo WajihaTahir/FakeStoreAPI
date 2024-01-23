@@ -1,10 +1,18 @@
 import React, { useEffect } from "react";
 import { useFavourites } from "../Context/FavoritesContext";
 import { useProducts } from "../Context/ProductsContext";
+import "../Favorite.css";
+import { useNavigate } from "react-router-dom";
 
-function Favorites() {
-  const { favorites } = useFavourites();
+const Favorites = () => {
+  const { favorites, removeFromFavorites } = useFavourites();
   const { getProduct } = useProducts();
+
+  const navigate = useNavigate();
+
+  const takeBack = () => {
+    navigate("/allproducts");
+  };
 
   return (
     <div>
@@ -14,29 +22,28 @@ function Favorites() {
       {favorites?.map((item) => {
         const product = getProduct(item);
         return (
-          <div
-            style={{
-              padding: "10px",
-              borderWidth: "2px",
-              borderColor: "black",
-              borderStyle: "solid",
-              marginBottom: "10px",
-              borderRadius: "10px",
-              width: "700px",
-            }}
+          <div className="favoriteContainer"
             key={product?.id}
           >
-            <p style={{ color: "black" }}>{product?.title}</p>
-            <img
-              src={product.image}
-              style={{ height: "100px", width: "100px" }}
-            ></img>
-            <p style={{ color: "black" }}>$ {product?.price}</p>
+            <p>{product?.title}</p>
+            <img src={product.image}></img>
+            <p>$ {product?.price}</p>
+            <div className="favoriteButtons">
+            <button className="gotoproduct" onClick={takeBack}>
+              Go to Item
+            </button>
+            <button
+              className="removeFavorite"
+              onClick={() => removeFromFavorites(product.id)}
+            >
+              Remove From Favorites
+            </button>
+            </div>
           </div>
         );
       })}
     </div>
   );
-}
+};
 
 export default Favorites;

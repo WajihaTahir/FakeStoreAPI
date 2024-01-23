@@ -25,16 +25,12 @@ export function useFavourites() {
 
 export function FavoritesProvider({ children }) {
   const [favorites, setFavorites] = useState([]);
-  const { user } = useUserAuth() ?? {};
+  const { user } = useUserAuth();
 
   //Function to check if the item is already in favs or not.
 
   function isItemInFavorites(productId) {
-    return (
-      favorites.find((item) => {
-        return item === productId; //favourite will be checked against each item for the given productId.
-      }) !== undefined
-    ); //return false if item is not in the favourites already.
+    return favorites.some((item) => item === productId); //return false if item is not in the favourites already.
   }
 
   //Function to add the item to the favs.
@@ -89,13 +85,14 @@ export function FavoritesProvider({ children }) {
       if (user) {
         try {
           const userDocRef = doc(db, "users", user.uid);
-          const docSnapshot = await getDoc(userDocRef);
+          const docSnapshot = await getDoc(userDocRef); //retrieves a document snapshot
 
           if (docSnapshot.exists()) {
             //checking if the document exists in the firestore.
             // Access the "favorites" array from the document data
             const userData = docSnapshot.data(); //get the data of the document if it exists in the cache.
-            const userFavorites = userData.favorites || [];
+            const userFavorites = userData.favorites || []; //access the favorites array from document data.
+            //if it doesn't exists then it defaults to empty array. 
             setFavorites(userFavorites);
           } else {
             console.log("Document does not exist");
@@ -112,6 +109,7 @@ export function FavoritesProvider({ children }) {
         favorites,
         toggleFavorite,
         isItemInFavorites,
+        removeFromFavorites,
       }}
     >
       {children}

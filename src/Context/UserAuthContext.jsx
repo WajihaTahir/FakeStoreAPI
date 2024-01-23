@@ -63,7 +63,7 @@ export function UserAuthContextProvider({ children }) {
     }
   }
 
-  //Creating a listener here so it unsubscribes when we unmount our app.  
+  //Creating a listener here so it unsubscribes when we unmount our app, helps in saving memory. 
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (currentUser) => {

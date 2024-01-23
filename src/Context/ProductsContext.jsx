@@ -1,7 +1,7 @@
 import { createContext, useContext, useEffect } from "react";
 import { useState } from "react";
 
-const ProductsContext = createContext({});
+const ProductsContext = createContext({});  //creating context for fetching so we can centralize and manage data easily. 
 
 export function useProducts() {
   return useContext(ProductsContext);
@@ -10,7 +10,7 @@ export function useProducts() {
 export function ProductsProvider({ children }) {
   const [products, setProducts] = useState([]);
 
-  function getProduct(id) {
+  function getProduct(id) {  //will be used in fav component.
     return products.find((item) => item.id === id);
   }
 

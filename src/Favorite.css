@@ -1,0 +1,47 @@
+.favoriteContainer{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    padding: 10px;
+    border-width: 2px;
+    border-color: black;
+    border-style: solid;
+    margin-bottom: 10px;
+    border-radius: 10px;
+    width: 700px;
+  
+}
+
+
+
+p {
+  color: black;
+}
+img {
+  height: 100px;
+  width: 100px;
+}
+
+.favoriteButtons{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    margin-left: 50px
+}
+.removeFavorite {
+  margin-left: 20px;
+  padding: 7px;
+}
+.removeFavorite:hover {
+  background-color: lightblue;
+ 
+}
+.gotoproduct {
+  padding: 7px;
+}
+.gotoproduct:hover {
+  background-color: lightblue;
+}

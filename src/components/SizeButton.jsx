@@ -9,7 +9,7 @@ function SizeButton({ buttontext, style }) {
         backgroundColor: "transparent",
         color: "black",
         borderColor: "black",
-        ...style,
+        margin:"10px"
       }}
     >
       {buttontext}

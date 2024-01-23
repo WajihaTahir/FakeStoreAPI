@@ -16,9 +16,9 @@ const Productsdetails = () => {
     removeFromCart,
   } = useShoppingCart();
   const { isItemInFavorites, toggleFavorite } = useFavourites();
-  const { state } = useLocation();
-  // console.log("location", state?.product);
-  const quantity = getItemQuantity(state.product.id);
+  const { state } = useLocation();  //to extract the state property from the current location. 
+  // console.log("location", state);
+  const quantity = getItemQuantity(state.product.id); //tells the quantity of the item at your location
   console.log("Quantity of item", quantity);
 
   const isFavorite = isItemInFavorites(state.product.id); //means that isItemInFavorites will be true when the item is already in the favs.

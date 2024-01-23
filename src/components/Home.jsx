@@ -38,7 +38,7 @@ const Home = () => {
       >
         Shop Now
       </Link>{" "}
-      <div
+      <div className="homeImages"
         style={{
           display: "grid",
           gridTemplateColumns: "1fr 1fr 1fr",
@@ -46,17 +46,17 @@ const Home = () => {
           marginTop: "100px",
         }}
       >
-        <div style={{display:"flex", flexDirection:"row"}}>
+        <div  style={{display:"flex", flexDirection:"row"}}>
           <img
             src={Image1}
-            style={{ width: "450px", height: "500px", display: "flex" }}
+            style={{ width: "100%", height: "100%", display: "flex" }}
           ></img>
         </div >
         <div style={{display:"flex", flexDirection:"row"}}>
-          <img src={Image2} style={{ width: "450px", height: "500px" }}></img>
+          <img src={Image2} style={{ width: "100%", height: "100%" }}></img>
         </div>
         <div style={{display:"flex", flexDirection:"row"}}>
-          <img src={Image3} style={{ width: "450px", height: "500px" }}></img>
+          <img src={Image3} style={{ width: "100%", height: "100%" }}></img>
         </div>
       </div>
     </>
