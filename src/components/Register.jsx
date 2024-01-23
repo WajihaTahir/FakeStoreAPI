@@ -110,7 +110,7 @@ const Signup = () => {
                   style={{ color: validateForm() ? "green" : "red" }}
                 >
                   {validateForm()
-                    ? "Password Match"
+                    ? "Password Matches"
                     : "Password Does not Match"}
                 </p>
               )}

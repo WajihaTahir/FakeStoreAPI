@@ -1,24 +1,27 @@
-import { useState } from "react";
 import { useLocation } from "react-router-dom";
 import { faCartShopping } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHeart } from "@fortawesome/free-regular-svg-icons";
+import { faHeart as faHeartSolid } from "@fortawesome/free-solid-svg-icons";
 import SizeButton from "./SizeButton";
 import { useShoppingCart } from "../Context/ShoppingCartContext";
 import "../Productdetails.css";
+import { useFavourites } from "../Context/FavoritesContext";
 
 const Productsdetails = () => {
-  // const [counter, setCounter] = useState(0);
   const {
     getItemQuantity,
     increaseCartQuantity,
     decreaseCartQuantity,
     removeFromCart,
   } = useShoppingCart();
+  const { isItemInFavorites, toggleFavorite } = useFavourites();
   const { state } = useLocation();
   // console.log("location", state?.product);
   const quantity = getItemQuantity(state.product.id);
-  // console.log("quantitytt", quantity);
+  console.log("Quantity of item", quantity);
+
+  const isFavorite = isItemInFavorites(state.product.id); //means that isItemInFavorites will be true when the item is already in the favs.
   return (
     <>
       <div
@@ -103,8 +106,12 @@ const Productsdetails = () => {
                 color: "black",
                 borderColor: "black",
               }}
+              onClick={() => {
+                toggleFavorite(state.product.id);
+              }}
             >
-              Favourite <FontAwesomeIcon icon={faHeart} />
+              Favourite{" "}
+              <FontAwesomeIcon icon={isFavorite ? faHeartSolid : faHeart} />
             </button>
           </div>
           <br></br>

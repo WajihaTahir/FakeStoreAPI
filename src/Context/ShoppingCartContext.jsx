@@ -16,7 +16,6 @@ import { onAuthStateChanged } from "firebase/auth";
 import { auth } from "../firebase";
 
 
-
 //creating context.
 
 const ShoppingCartContext = createContext({});
@@ -31,18 +30,23 @@ export function useShoppingCart() {
 export function ShoppingCartProvider({ children }) {
   const [cartItems, setCartItems] = useState([]);
   const { user } = useUserAuth() ?? {};
-  console.log("cartitem", cartItems);
+  // console.log("cartitem", cartItems);
+
   const cartQuantity = cartItems.reduce(
     (quantity, item) => item.quantity + quantity,
     0      //iterates over and starts from 0 and returns a single number after reduce function.
+    //checks against each item of cartItems and then adds them up. 
   );
-  console.log("cartquantity", cartQuantity);
-  
   
 
+  // Function to check if the item is in the cart and return its quantity. 
+  
   function getItemQuantity(id) {
     return cartItems.find((item) => item.product.id === id)?.quantity || 0; //if we have the condition true, we want to return the quantity otherwise a default of zero.
   }
+
+
+  //Function to increase item 1.if it is not in the cart, and if it is in the cart, then increment by 1.
 
   function increaseCartQuantity(product) {
     setCartItems((currItems) => {
@@ -63,7 +67,7 @@ export function ShoppingCartProvider({ children }) {
         });
       }
     });
-    if (user.uid) {
+    if (user.uid) {          //Doing these steps so the cart item info is stored in the database of the user in firebase and is not effected if the page is refreshed or user logsout. 
       if (
         cartItems.find((item) => {
           return item.product.id === product.id;
@@ -87,6 +91,8 @@ export function ShoppingCartProvider({ children }) {
       }
     }
   }
+
+  //Function to decrease quantity from users cart. 
 
   function decreaseCartQuantity(product) {
     console.log("productss", product);
@@ -112,13 +118,13 @@ export function ShoppingCartProvider({ children }) {
       if (!currentCart) {
         return console.log("product not in cart");
       }
-      if (currentCart.quantity === 1) {
+      if (currentCart.quantity === 1) {        
         deleteDoc(doc(db, "users", user.uid, "cart", product.id + ""))
           .then(() => {
             console.log("document deleted");
           })
           .catch((e) => {
-            console.log("error it is for decreasing product", e);
+            console.log("error for decreasing product", e);
           });
         // doc takes references of database, collection name, and ID of a document as arguments
       } else {
@@ -137,7 +143,7 @@ export function ShoppingCartProvider({ children }) {
       const currentCart = cartItems.find((item) => {
         return item.product.id === id;
       });
-      if (!currentCart) {
+      if (!currentCart) {   //if the item is not in the cart. 
         return console.log("product not in cart");
       }
       deleteDoc(doc(db, "users", user.uid, "cart", id + ""))
@@ -145,11 +151,13 @@ export function ShoppingCartProvider({ children }) {
           console.log("document deleted");
         })
         .catch((e) => {
-          console.log("error it is for removing product", e);
+          console.log("error for removing product", e);
         });
     }
   }
   //using useEffect hook to get and keep the data after every render. 
+  //Doing these steps so the cart item info is stored in the database of the user in firebase and is not effected if the page is refreshed or user logsout.
+
   useEffect(() => {
     onAuthStateChanged(auth, async (user) => {    //on user auth state changed, the next condition is followed. 
       if (user) {
@@ -157,11 +165,11 @@ export function ShoppingCartProvider({ children }) {
         const dbCartItems = [];
         const cartCollection = await collection(db, "users", user.uid, "cart");
         const cartQuery = await query(cartCollection); //query returns all the data of users and all data of one particularly logged in user.
-        console.log("cartquery", cartQuery);
+        // console.log("cartquery", cartQuery);
         const docs = await getDocs(cartQuery); //Executes the query and returns the results as a QuerySnapshot/gets the data of the specific document from collection. 
-        console.log("document", docs);
+        // console.log("document", docs);
         docs.forEach((doc) => {
-          dbCartItems.push(doc.data());
+          dbCartItems.push(doc.data());  
           setCartItems(dbCartItems);
         });
       }
@@ -174,7 +182,7 @@ export function ShoppingCartProvider({ children }) {
         increaseCartQuantity,
         decreaseCartQuantity,
         removeFromCart,
-        // openCart,
+                // openCart,
         // closeCart,
         setCartItems,
         cartItems,

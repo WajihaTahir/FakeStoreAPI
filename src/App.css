@@ -9,3 +9,10 @@
   opacity: 0.5;
   cursor: pointer;
 }
+
+
+@media screen and (max-width: 1920px) {
+  body {
+display: flex;
+flex-direction: column;  }
+}

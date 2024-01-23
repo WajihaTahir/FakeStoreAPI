@@ -6,6 +6,7 @@ import {
   onAuthStateChanged,
   GoogleAuthProvider,
   signInWithPopup,
+  deleteUser,
 } from "firebase/auth";
 
 import { auth, db } from "../firebase";
@@ -27,30 +28,57 @@ export function UserAuthContextProvider({ children }) {
       .catch((e) => console.log(e));
   }
 
+  //Login function 
+
   function logIn(email, password) {
     return signInWithEmailAndPassword(auth, email, password);
   }
 
+  //Log out function
+
   function logOut() {
     return signOut(auth);
   }
+
+  //Function for google sign-in
 
   function googleSignIn() {
     const googleAuthProvider = new GoogleAuthProvider();
     return signInWithPopup(auth, googleAuthProvider);
   }
 
+
+  //Function to delete a user. 
+
+  function deleteAUser ()
+  {
+  if (window.confirm("Are you SURE you want to delete your account?")) {
+    deleteUser(user)
+      .then(() => {
+        console.log("User deleted");
+      })
+      .catch((error) => {
+        alert(error);
+      });
+    }
+  }
+
+  //Creating a listener here so it unsubscribes when we unmount our app.  
+
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
       setUser(currentUser);
     });
     return () => {
-      unsubscribe(); //unsubscribe on unmount
+      unsubscribe(); //unsubscribe on unmount to save memory.
     };
   }, []);
+
+
+  
   return (
     <userAuthContext.Provider
-      value={{ user, signUp, logIn, logOut, googleSignIn }}
+      value={{ user, signUp, logIn, logOut, googleSignIn, deleteAUser }}
     >
       {children}
     </userAuthContext.Provider>

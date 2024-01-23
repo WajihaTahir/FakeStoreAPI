@@ -1,14 +1,16 @@
 /* eslint-disable react/prop-types */
 import React from "react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import "../styles.css";
 import { Outlet, useLocation, useNavigate } from "react-router-dom";
 import Search from "./Search";
+import { useProducts } from "../Context/ProductsContext";
 
-function Products({ results, onButtonPressed, onProductSelected }) {
+function Products({ onButtonPressed, onProductSelected }) {
   const navigate = useNavigate();
   const location = useLocation();
-  const [products, setProducts] = useState(results);
+  const { products } = useProducts();
+  const [productsToShow, setProductsToShow] = useState([]);
   // console.log("location", location);
 
   function onimageclicked(product) {
@@ -16,8 +18,12 @@ function Products({ results, onButtonPressed, onProductSelected }) {
     onProductSelected(product);
   }
 
+  useEffect(() => {
+    setProductsToShow(products);
+  }, [products]);
+
   if (location.pathname !== "/allproducts") return <Outlet />;
-  if (results) {
+  if (products) {
     return (
       <div
         style={{
@@ -27,9 +33,9 @@ function Products({ results, onButtonPressed, onProductSelected }) {
           alignItems: "center",
         }}
       >
-        <Search results={results} setProducts={setProducts} />
-        {products.map((each) => {
-          let { id, title, price, image } = each;
+        <Search results={products} setProducts={setProductsToShow} />
+        {productsToShow?.map((each) => {
+          const { id, title, price, image } = each;
           return (
             <div
               key={id}

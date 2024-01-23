@@ -5,9 +5,14 @@ function Footer() {
     <div
       style={{
         backgroundColor: "black",
+        display: "flex",
+        flexDirection: "row",
+        alignItems: "center",
+        justifyContent: "center",
         width: "100%",
         position: "absolute",
         left: 0,
+        right: 0,
         marginTop: "200px",
         maxHeight: "300px",
       }}

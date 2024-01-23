@@ -3,6 +3,7 @@ import Image1 from "../assets/I1.jpeg";
 import Image2 from "../assets/I2.webp";
 import Image3 from "../assets/I3.jpeg";
 import { Link } from "react-router-dom";
+import "../Home.css"
 
 const Home = () => {
   const { user } = useUserAuth();
@@ -13,13 +14,15 @@ const Home = () => {
         style={{
           color: "black",
           fontSize: "34px",
-          marginTop: "55px",
+          fontWeight:"bold", 
           textAlign: "center",
         }}
       >
         Welcome to Fake Store<br></br>
       </div>{" "}
-      <h3 style={{ color: "black" }}>{user && user.email?.split("@")[0]}</h3>
+      <h3 style={{ color: "black"}}>
+        {user && user.email?.split("@")[0]}
+      </h3>
       <br></br>
       <Link
         style={{
@@ -43,16 +46,16 @@ const Home = () => {
           marginTop: "100px",
         }}
       >
-        <div>
+        <div style={{display:"flex", flexDirection:"row"}}>
           <img
             src={Image1}
             style={{ width: "450px", height: "500px", display: "flex" }}
           ></img>
-        </div>
-        <div>
+        </div >
+        <div style={{display:"flex", flexDirection:"row"}}>
           <img src={Image2} style={{ width: "450px", height: "500px" }}></img>
         </div>
-        <div>
+        <div style={{display:"flex", flexDirection:"row"}}>
           <img src={Image3} style={{ width: "450px", height: "500px" }}></img>
         </div>
       </div>
