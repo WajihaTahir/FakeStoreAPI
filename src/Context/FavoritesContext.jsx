@@ -18,6 +18,7 @@ const FavouritesContext = createContext({});
 
 //using context and returning it.
 
+// eslint-disable-next-line react-refresh/only-export-components
 export function useFavourites() {
   return useContext(FavouritesContext);
 }

@@ -107,6 +107,7 @@ export function UserAuthContextProvider({ children }) { //children are those whi
   );
 }
 
+// eslint-disable-next-line react-refresh/only-export-components
 export function useUserAuth() {
   return useContext(userAuthContext);
 }

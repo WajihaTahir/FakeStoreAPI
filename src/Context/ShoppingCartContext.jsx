@@ -10,7 +10,6 @@ import {
   query,
   getDocs,
   deleteDoc,
-  getDoc,
 } from "firebase/firestore";
 import { db } from "../firebase";
 import { onAuthStateChanged } from "firebase/auth";
@@ -22,6 +21,7 @@ const ShoppingCartContext = createContext({});
 
 //using context and returning it.
 
+// eslint-disable-next-line react-refresh/only-export-components
 export function useShoppingCart() {
   return useContext(ShoppingCartContext);
 }
