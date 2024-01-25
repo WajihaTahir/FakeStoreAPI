@@ -44,7 +44,7 @@ const Signup = () => {
     }
   };
 
-  const validateForm = () => password === confirmPassword;
+  const validateForm = () => password === confirmPassword; //the validate form gets true if matches
 
   return (
     <>

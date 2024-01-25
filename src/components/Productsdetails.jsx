@@ -16,8 +16,8 @@ const Productsdetails = () => {
     removeFromCart,
   } = useShoppingCart();
   const { isItemInFavorites, toggleFavorite } = useFavourites();
-  const { state } = useLocation();  //to extract the state property from the current location. 
-  // console.log("location", state);
+  const { state } = useLocation(); //to extract the state property from the current location. 
+  //returns an object with product information to be used lateron. 
   const quantity = getItemQuantity(state.product.id); //tells the quantity of the item at your location
   console.log("Quantity of item", quantity);
 
@@ -62,7 +62,7 @@ const Productsdetails = () => {
           />
           <SizeButton buttontext="XXL (EU 52-54)" />
           <br></br>
-          <div>
+          <div style={{display:"flex", flexDirection:"column", alignItems:"center", justifyContent:"center"}}>
             <button
               className="addtocart"
               onClick={() => increaseCartQuantity(state.product)}
@@ -86,7 +86,7 @@ const Productsdetails = () => {
                 fontSize: "20px",
                 borderRadius: "30px",
                 marginTop: "50px",
-                marginLeft: "250px",
+                
               }}
             >
               Remove From Cart
@@ -101,7 +101,6 @@ const Productsdetails = () => {
                 fontSize: "20px",
                 borderRadius: "30px",
                 marginTop: "40px",
-                marginLeft: "250px",
                 backgroundColor: "transparent",
                 color: "black",
                 borderColor: "black",

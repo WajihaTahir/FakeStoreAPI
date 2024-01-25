@@ -41,7 +41,7 @@ export function ShoppingCartProvider({ children }) {
     //checks against each item of cartItems and then adds them up.
   );
 
-  // Function to check the item quantity and used around + - buttons
+  // Function to check the particular item quantity and used around + - buttons
 
   function getItemQuantity(id) {
     return cartItems.find((item) => item.product.id === id)?.quantity || 0;
@@ -79,7 +79,7 @@ export function ShoppingCartProvider({ children }) {
         cartItems.find((item) => {
           return item.product.id === product.id;
         }) === undefined  //returning undefined means the product is not in the cart 
-        //so exceute the following line. 
+        //so execute the following line. 
       ) {
         setDoc(doc(db, "users", user.uid, "cart", product.id + ""), {
           product: product,  //sending the whole product details
@@ -153,13 +153,13 @@ export function ShoppingCartProvider({ children }) {
     });
     if (user.uid) {
       const currentCart = cartItems.find((item) => {
-        return item.product.id === id;
+        return item.product.id === id; //result is stored in currentCart
       });
       if (!currentCart) {
         //if the item is not in the cart.
         return console.log("product not in cart");
       }
-      deleteDoc(doc(db, "users", user.uid, "cart", id + ""))
+      deleteDoc(doc(db, "users", user.uid, "cart", id + ""))  //removes the cart document. 
         .then(() => {
           console.log("document deleted");
         })
@@ -174,13 +174,13 @@ export function ShoppingCartProvider({ children }) {
   //fetching and updating the user's shopping cart items from a 
   //Firestore database when the authentication state changes.
 
-  useEffect(() => {
+  useEffect(() => {   //saving data even on refresh or user state changes. 
     onAuthStateChanged(auth, async (user) => {
       //on user auth state changed, the next condition is followed.
       if (user) {
         //getDoc()
         const dbCartItems = [];
-        const cartCollection = await collection(db, "users", user.uid, "cart");
+        const cartCollection = await collection(db, "users", user.uid, "cart"); //getting access to that collection
         const cartQuery = await query(cartCollection); //creates a query to return 
         //all the data of users and all data of one particularly logged in user.
         // console.log("cartquery", cartQuery);

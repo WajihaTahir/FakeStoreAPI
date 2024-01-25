@@ -14,13 +14,15 @@ function Cart() {
 
   const [total, setTotal] = useState(0);
 
+
+  //calaculating the price of the cart by multiplying the quantity with its price and adding it. 
   useEffect(() => {
     let totalPrice = 0;
     cartItems.forEach((item) => {
       totalPrice += item.product.price * getItemQuantity(item.product.id);
     });
     setTotal(totalPrice);
-  }, [cartItems]);
+  }, [cartItems]);  
 
   // console.log("cartcomponentitem", cartItems);
 
@@ -31,6 +33,7 @@ function Cart() {
       </h2>
       {cartItems.map((item) => {
         const quantity = getItemQuantity(item.product.id);
+        //calculating quantity using getItemQuantity function for each item using its id
 
         return (
           <div
@@ -43,7 +46,7 @@ function Cart() {
               borderRadius: "10px",
               width: "800px",
             }}
-            key={item.id}
+            key={item.id} //we have to pass key, here id otherwise it gives error. 
           >
             <h5 style={{ color: "black" }}>{item.product.title}</h5>
             <img

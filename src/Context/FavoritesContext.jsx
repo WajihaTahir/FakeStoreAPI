@@ -89,7 +89,6 @@ export function FavoritesProvider({ children }) {
 
           if (docSnapshot.exists()) {
             //checking if the document exists in the firestore.
-            // Access the "favorites" array from the document data
             const userData = docSnapshot.data(); //get the data of the document if it exists in the cache.
             const userFavorites = userData.favorites || []; //access the favorites array from document data.
             //if it doesn't exists then it defaults to empty array. 

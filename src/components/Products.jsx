@@ -9,7 +9,7 @@ import { useProducts } from "../Context/ProductsContext";
 function Products({ onButtonPressed, onProductSelected }) {
   const navigate = useNavigate();
   const location = useLocation();
-  const { products } = useProducts();
+  const { products } = useProducts();  //to get from productscontext. 
   const [productsToShow, setProductsToShow] = useState([]);
   // console.log("location", location);
 
@@ -22,7 +22,6 @@ function Products({ onButtonPressed, onProductSelected }) {
     setProductsToShow(products);
   }, [products]);
 
-  if (location.pathname !== "/allproducts") return <Outlet />;
   if (products) {
     return (
       <div
@@ -35,7 +34,7 @@ function Products({ onButtonPressed, onProductSelected }) {
       >
         <Search results={products} setProducts={setProductsToShow} />
         {productsToShow?.map((each) => {
-          const { id, title, price, image } = each;
+          const { id, title, price, image } = each; //destructured here.
           return (
             <div
               key={id}
@@ -93,7 +92,9 @@ function Products({ onButtonPressed, onProductSelected }) {
                   >{`Price: $ ${price}`}</h6>
                   <button
                     onClick={() => {
-                      navigate("/product-detail", { state: { product: each } });
+                      navigate("/product-detail", { state: { product: each } }); //sets the state here in this way
+                      //with the property as product for 'each' which was already in the loop. 
+                     
                     }}
                     className="findmore"
                     style={{

@@ -34,7 +34,7 @@ export function ProductsProvider({ children }) {
       value={{
         products,
         getProduct,
-        fetchProducts,
+        fetchProducts,   //passing these functions so that we can access the data when wrapped in routes. 
       }}
     >
       {children}
