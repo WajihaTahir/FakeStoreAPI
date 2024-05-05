@@ -13,8 +13,8 @@ The user can sign-in after signing up and keep products in favourites and cart o
 
 <img width="1355" alt="Screenshot 2024-05-05 at 1 12 54 PM" src="https://github.com/WajihaTahir/FakeStoreAPI/assets/144616811/a49a3ed2-09c2-475b-a975-4957c80c008c">
 
+<img width="1356" alt="Screenshot 2024-05-05 at 1 13 29 PM" src="https://github.com/WajihaTahir/FakeStoreAPI/assets/144616811/a50f0343-1629-4985-8471-d83ca33ca104">
 
-<img width="1355" alt="Screenshot 2024-05-05 at 1 12 54 PM" src="https://github.com/WajihaTahir/FakeStoreAPI/assets/144616811/cd13e427-4811-439b-8eb3-74b396e7662e">
 
 <h2>Technologies used</h2>
 
