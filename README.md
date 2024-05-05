@@ -4,7 +4,7 @@ I created a Single Page Application using FakeStore API. I utilized the tech sta
 
 The user can sign-in after signing up and keep products in favourites and cart of their account. So whenever they login back they can have those items in the cart or they can also remove them from cart or favourites, increase quantity, decrease quantity and more. <br>
 
-<h2>App Impressions</h2>
+<h2>App Impressions:</h2>
 <img width="1386" alt="Screenshot 2024-05-05 at 1 11 57 PM" src="https://github.com/WajihaTahir/FakeStoreAPI/assets/144616811/ae49f5e9-1382-4051-a6a2-b5d94ee87a40">
 
 
@@ -16,7 +16,7 @@ The user can sign-in after signing up and keep products in favourites and cart o
 <img width="1356" alt="Screenshot 2024-05-05 at 1 13 29 PM" src="https://github.com/WajihaTahir/FakeStoreAPI/assets/144616811/a50f0343-1629-4985-8471-d83ca33ca104">
 
 
-<h2>Technologies used</h2>
+<h2>Technologies Used:</h2>
 
 ![JavaScript](https://img.shields.io/badge/javascript-%23323330.svg?style=for-the-badge&logo=javascript&logoColor=%23F7DF1E)
 ![HTML5](https://img.shields.io/badge/html5-%23E34F26.svg?style=for-the-badge&logo=html5&logoColor=white)
